@@ -43,90 +43,6 @@ export const Navbar: Component = () => {
             <div class="i-tabler-plus mr-1 text-muted-foreground"></div>
             {t('navbar.new-note')}
           </Button>
-
-          <Button variant="ghost" class="text-lg px-0 size-9" as={A} href="https://github.com/CorentinTh/enclosed" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
-            <div class="i-tabler-brand-github"></div>
-          </Button>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
-              <div classList={{ 'i-tabler-moon': themeStore.getColorMode() === 'dark', 'i-tabler-sun': themeStore.getColorMode() === 'light' }}></div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent class="w-42">
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'light' })} class="flex items-center gap-2 cursor-pointer">
-                <div class="i-tabler-sun text-lg"></div>
-                {t('navbar.theme.light-mode')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'dark' })} class="flex items-center gap-2 cursor-pointer">
-                <div class="i-tabler-moon text-lg"></div>
-                {t('navbar.theme.dark-mode')}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => themeStore.setColorMode({ mode: 'system' })} class="flex items-center gap-2 cursor-pointer">
-                <div class="i-tabler-device-laptop text-lg"></div>
-                {t('navbar.theme.system-mode')}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Language">
-              <div class="i-custom-language size-4"></div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {locales.map(locale => (
-                <DropdownMenuItem onClick={() => setLocale(locale.key)} class={cn('flex items-center gap-2 cursor-pointer', { 'font-semibold': getLocale() === locale.key })}>
-                  {locale.name}
-                </DropdownMenuItem>
-              ))}
-
-              <DropdownMenuSeparator />
-
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" rel="noopener noreferrer" href="https://github.com/CorentinTh/enclosed/tree/main/packages/app-client/src/locales">
-                {t('navbar.settings.contribute-to-i18n')}
-              </DropdownMenuItem>
-
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger as={Button} class="text-lg px-0 size-9" variant="ghost" aria-label="Change theme">
-              <div class="i-tabler-dots-vertical"></div>
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent class="w-46">
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/' })}>
-                <div class="i-tabler-file-text text-lg"></div>
-                {t('navbar.settings.documentation')}
-              </DropdownMenuItem>
-
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href={buildDocUrl({ path: '/integrations/cli' })}>
-                <div class="i-tabler-terminal text-lg"></div>
-                {t('navbar.settings.cli')}
-              </DropdownMenuItem>
-
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href="https://github.com/CorentinTh/enclosed/issues/new/choose" rel="noopener noreferrer">
-                <div class="i-tabler-bug text-lg"></div>
-                {t('navbar.settings.report-bug')}
-              </DropdownMenuItem>
-
-              <DropdownMenuItem as="a" class="flex items-center gap-2 cursor-pointer" target="_blank" href="https://buymeacoffee.com/cthmsst" rel="noopener noreferrer">
-                <div class="i-tabler-pig-money text-lg"></div>
-                {t('navbar.settings.support')}
-              </DropdownMenuItem>
-
-              {config.isAuthenticationRequired && authStore.getIsAuthenticated() && (
-                <>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem class="flex items-center gap-2 cursor-pointer" onClick={() => authStore.logout()}>
-                    <div class="i-tabler-logout text-lg"></div>
-                    {t('navbar.settings.logout')}
-                  </DropdownMenuItem>
-                </>
-              )}
-
-            </DropdownMenuContent>
-
-          </DropdownMenu>
         </div>
       </div>
     </div>
@@ -187,9 +103,6 @@ export const AppLayout: ParentComponent = (props) => {
       <Navbar />
 
       <div class="flex-1 pb-20 ">{props.children}</div>
-
-      <Footer />
-
     </div>
   );
 };
